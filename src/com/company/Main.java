@@ -11,37 +11,33 @@ public class Main {
             BufferedWriter bw = new BufferedWriter(new FileWriter("chat.txt"));
             BufferedReader br = new BufferedReader(new FileReader("chat.txt"));
 
-            String jmeno;
-            String zprava;
-            String line = br.readLine();
-            int countLine = 0;
-            boolean exit = true;
+            Object promenne = new Object();
 
 
 
                 System.out.println("Zadej jmeno: ");
-                jmeno = sc.nextLine();
+                promenne.jmeno = sc.nextLine();
 
-                if (countLine == 0) {
+                if (promenne.countLine == 0) {
                     System.out.println("-- žádné předchozí zprávy--");
                 } else {
-                    System.out.println("V databázi máš " + countLine + " zprávy");
+                    System.out.println("V databázi máš " + promenne.countLine + " zprávy");
                     System.out.println("-------------------------------------------");
-                    while ((line = br.readLine()) != null) {
-                        System.out.println(line);
+                    while ((promenne.line = br.readLine()) != null) {
+                        System.out.println(promenne.line);
                     }
                     System.out.println("-------------------------------------------");
                 }
                 System.out.println("Pro ukončení zápisu zpráv zadejte `konec1`");
-                while (exit) {
-                    zprava = sc.nextLine();
+                while (promenne.exit) {
+                    promenne.zprava = sc.nextLine();
 
-                    if (zprava.equals("konec1")) {
-                        exit = false;
+                    if (promenne.zprava.equals("konec1")) {
+                        promenne.exit = false;
                     } else {
-                        bw.write(jmeno + " : " + zprava);
+                        bw.write(promenne.jmeno + " : " + promenne.zprava);
                         bw.newLine();
-                        countLine++;
+                        promenne.countLine++;
                     }
                 }
                 bw.close();
